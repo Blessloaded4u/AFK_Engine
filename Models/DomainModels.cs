@@ -27,3 +27,9 @@ public class Mission
     public string Status { get; set; } = "ACTIVE"; // ACTIVE, COMPLETED
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+public class MissionResult
+{
+    public string MissionId { get; set; } = string.Empty;
+    public string UserReport { get; set; } = string.Empty;
+    public DateTime CompletedAt { get; set; } = DateTime.UtcNow;
+}
