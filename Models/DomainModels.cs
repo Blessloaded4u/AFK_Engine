@@ -33,3 +33,14 @@ public class MissionResult
     public string UserReport { get; set; } = string.Empty;
     public DateTime CompletedAt { get; set; } = DateTime.UtcNow;
 }
+
+public class PlayerProgress
+{
+    public int TotalXp { get; set; } = 0;
+    public int Level => (TotalXp / 100) + 1;
+    public int CurrentLevelXp => TotalXp % 100;
+    public int StreakDays { get; set; } = 0;
+    public int CompletedMissionsCount { get; set; } = 0;
+    public int IdentityProgressPercent => Math.Min(CompletedMissionsCount, 100);
+    public string TomorrowTeaser { get; set; } = "Tomorrow will challenge a different aspect of your growth. Rest well, Hunter.";
+}
