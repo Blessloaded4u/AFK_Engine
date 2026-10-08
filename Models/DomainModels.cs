@@ -44,3 +44,32 @@ public class PlayerProgress
     public int IdentityProgressPercent => Math.Min(CompletedMissionsCount, 100);
     public string TomorrowTeaser { get; set; } = "Tomorrow will challenge a different aspect of your growth. Rest well, Hunter.";
 }
+
+public class SystemState
+{
+    public UserProfile Profile { get; set; } = new();
+    public Mission? CurrentMission { get; set; }
+    public PlayerProgress Progress { get; set; } = new();
+    public List<MissionResult> History { get; set; } = new();
+}
+
+public class AiMissionDto
+{
+    [JsonPropertyName("missionName")]
+    public string MissionName { get; set; } = string.Empty;
+
+    [JsonPropertyName("description")]
+    public string Description { get; set; } = string.Empty;
+
+    [JsonPropertyName("durationMinutes")]
+    public int DurationMinutes { get; set; }
+
+    [JsonPropertyName("difficulty")]
+    public int Difficulty { get; set; }
+
+    [JsonPropertyName("whyThisMission")]
+    public string WhyThisMission { get; set; } = string.Empty;
+
+    [JsonPropertyName("tomorrowTeaser")]
+    public string TomorrowTeaser { get; set; } = string.Empty;
+}
