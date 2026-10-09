@@ -1,9 +1,9 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TheSystem.Models;
+using AFK_Engine.Models;
 
-namespace TheSystem.Services;
+namespace AFK_Engine.Services;
 
 public class AiService
 {
