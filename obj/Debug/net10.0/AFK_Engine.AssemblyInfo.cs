@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AFK_Engine")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a73264dc1d69c18853b2f6622a940abd1982a7c7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0777a7a959a13c4e14de4605c9ffa92ec552eae2")]
 [assembly: System.Reflection.AssemblyProductAttribute("AFK_Engine")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AFK_Engine")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

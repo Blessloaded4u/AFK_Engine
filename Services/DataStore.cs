@@ -1,7 +1,7 @@
 using System.Text.Json;
 using AFK_Engine.Models;
 
-namespace TheSystem.Services;
+namespace AFK_Engine.Services;
 
 public class DataStore
 {

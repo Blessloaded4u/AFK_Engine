@@ -1,5 +1,5 @@
-using TheSystem.Models;
-using TheSystem.Services;
+using AFK_Engine.Models;
+using AFK_Engine.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
