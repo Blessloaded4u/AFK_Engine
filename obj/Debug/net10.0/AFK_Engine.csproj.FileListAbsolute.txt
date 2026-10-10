@@ -28,5 +28,5 @@ C:\BlexonDev\Developer\AFK_Engine\obj\Debug\net10.0\AFK_Engine.pdb
 C:\BlexonDev\Developer\AFK_Engine\obj\Debug\net10.0\AFK_Engine.genruntimeconfig.cache
 C:\BlexonDev\Developer\AFK_Engine\obj\Debug\net10.0\ref\AFK_Engine.dll
 C:\BlexonDev\Developer\AFK_Engine\bin\Debug\net10.0\AFK_Engine.staticwebassets.runtime.json
-C:\BlexonDev\Developer\AFK_Engine\obj\Debug\net10.0\compressed\4zqsa9ce45-{0}-btsqzin4ww-btsqzin4ww.gz
-C:\BlexonDev\Developer\AFK_Engine\bin\Debug\net10.0\system_state.json
+C:\BlexonDev\Developer\AFK_Engine\bin\Debug\net10.0\hunters_state.json
+C:\BlexonDev\Developer\AFK_Engine\obj\Debug\net10.0\compressed\4zqsa9ce45-{0}-sn4mgl6230-sn4mgl6230.gz

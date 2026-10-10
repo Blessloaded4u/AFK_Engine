@@ -1,0 +1,17 @@
+# Build results
+bin/
+obj/
+
+# Local data & environment secrets
+hunters_state.json
+hunters_state.json.tmp
+.env
+appsettings.*.local.json
+
+# IDE / OS metadata
+.vscode/
+.idea/
+*.user
+*.suo
+.DS_Store
+Thumbs.db

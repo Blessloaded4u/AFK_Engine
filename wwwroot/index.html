@@ -2,103 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>AFK Engine</title>
-  <!-- Tailwind CSS CDN -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AFK ENGINE // PROTOCOL TOUCH GRASS</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Rajdhani', sans-serif;
-      background-color: #030712;
-    }
-    .mono {
-      font-family: 'Share Tech Mono', monospace;
-    }
-    .system-border {
-      border: 1px solid #06b6d4;
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-    }
-    .system-glow {
-      text-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
-    }
+    body { font-family: 'Rajdhani', sans-serif; background-color: #030712; }
+    .mono { font-family: 'Share Tech Mono', monospace; }
+    .system-border { border: 1px solid #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.15); }
+    .system-glow { text-shadow: 0 0 8px rgba(6, 182, 212, 0.6); }
   </style>
 </head>
 <body class="text-slate-100 min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
   <div class="max-w-md w-full mx-auto p-4 flex-grow flex flex-col justify-center">
 
-    <!-- Header / HUD -->
     <header class="mb-4 text-center">
-      <div class="mono text-xs text-cyan-400 tracking-widest system-glow">[ SYSTEM INITIALIZED // PROTOCOL: TOUCH GRASS ]</div>
+      <div class="mono text-xs text-cyan-400 tracking-widest system-glow">[ AFK ENGINE // TOUCH GRASS ENGINE ]</div>
       <h1 class="text-3xl font-black tracking-wider text-white">AFK ENGINE</h1>
     </header>
 
-    <!-- LOADING STATE -->
-    <div id="view-loading" class="text-center py-12">
-      <div class="inline-block animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full mb-3"></div>
-      <p class="mono text-cyan-300 text-sm">SYNCHRONIZING WITH SYSTEM CORE...</p>
+    <!-- In-App Notification Toast -->
+    <div id="toast" class="hidden mb-3 p-3 rounded text-xs mono text-center"></div>
+
+    <!-- VIEW 0: LOADING & ERROR RECOVERY -->
+    <div id="view-loading" class="text-center py-12 space-y-3">
+      <div id="loading-spinner" class="inline-block animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full mb-1"></div>
+      <p id="loading-status" class="mono text-cyan-300 text-sm">SYNCHRONIZING WITH SYSTEM CORE...</p>
+      <button id="btn-retry-conn" class="hidden mx-auto bg-cyan-600 hover:bg-cyan-500 text-black font-bold px-4 py-2 rounded text-xs mono">
+        RETRY CONNECTION
+      </button>
     </div>
 
-    <!-- VIEW 1: ONBOARDING FORM -->
+    <!-- VIEW 1: ONBOARDING -->
     <div id="view-onboarding" class="hidden bg-slate-900/90 rounded-lg p-5 system-border">
-      <div class="mono text-xs text-cyan-400 mb-2">// IDENTIFICATION REGISTRATION</div>
-      <h2 class="text-xl font-bold mb-4 text-white">ESTABLISH HUNTER IDENTITY</h2>
+      <div class="mono text-xs text-cyan-400 mb-1">// IDENTIFICATION PROTOCOL</div>
+      <h2 class="text-xl font-bold mb-3 text-white">HUNTER REGISTRATION</h2>
 
       <form id="onboarding-form" class="space-y-3 text-sm">
         <div>
-          <label class="block text-slate-300 font-medium mb-1">Hunter Name</label>
-          <input type="text" id="name" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Jin-Woo">
+          <label class="block text-slate-300 font-medium mb-1">Hunter Call-Sign / Name</label>
+          <input type="text" id="name" required maxlength="40" class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Jin-Woo">
         </div>
         <div>
-          <label class="block text-slate-300 font-medium mb-1">Person / Figure You Secretly Admire</label>
-          <input type="text" id="admiredPerson" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. David Goggins / Miyamoto Musashi">
+          <label class="block text-slate-300 font-medium mb-1">Person / Hero You Secretly Admire</label>
+          <input type="text" id="admiredPerson" required maxlength="60" class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Miyamoto Musashi">
         </div>
         <div>
-          <label class="block text-slate-300 font-medium mb-1">What Quality of Theirs Do You Want?</label>
-          <input type="text" id="desiredQuality" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Unshakable self-discipline">
+          <label class="block text-slate-300 font-medium mb-1">Quality of Theirs You Wish to Embody</label>
+          <input type="text" id="desiredQuality" required maxlength="80" class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Unshakable calm and focus">
         </div>
         <div>
-          <label class="block text-slate-300 font-medium mb-1">Physical Activities You Tolerate or Enjoy</label>
-          <input type="text" id="activitiesEnjoyed" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Walking, sprinting, exploring quiet streets">
+          <label class="block text-slate-300 font-medium mb-1">Passions & Physical Hobbies You Enjoy</label>
+          <input type="text" id="activitiesEnjoyed" required maxlength="120" class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Dancing, reading books, exploring quiet paths">
         </div>
         <div>
-          <label class="block text-slate-300 font-medium mb-1">Environments / Activities You Strongly Dislike</label>
-          <input type="text" id="dislikes" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Crowded gyms, noisy places">
+          <label class="block text-slate-300 font-medium mb-1">Environments / Activities You Dislike</label>
+          <input type="text" id="dislikes" required maxlength="120" class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Crowded malls, noisy gyms">
         </div>
         <div>
-          <label class="block text-slate-300 font-medium mb-1">Your Worst Screen-Addiction Habit</label>
-          <input type="text" id="badHabit" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Scrolling social feeds in bed">
+          <label class="block text-slate-300 font-medium mb-1">Worst Screen-Drain Addiction</label>
+          <input type="text" id="badHabit" required maxlength="120" class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Late-night video scrolling">
         </div>
         <div>
-          <label class="block text-slate-300 font-medium mb-1">Available Time Today (Minutes)</label>
+          <label class="block text-slate-300 font-medium mb-1">Available Time Today (Minutes: 10 - 180)</label>
           <input type="number" id="timeMinutes" min="10" max="180" value="25" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 focus:border-cyan-400 focus:outline-none">
         </div>
 
-        <button type="submit" class="w-full mt-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded transition-all tracking-wider">
-          INITIALIZE QUEST PROTOCOL
+        <button type="submit" id="btn-submit-onboard" class="w-full mt-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded tracking-wider">
+          REGISTER & RECEIVE DIRECTIVE
         </button>
       </form>
     </div>
 
     <!-- VIEW 2: ACTIVE QUEST -->
     <div id="view-quest" class="hidden space-y-4">
-      
-      <!-- Player Status Bar -->
       <div class="bg-slate-900 border border-slate-800 rounded p-3 text-xs mono flex justify-between items-center">
-        <div>
-          <span class="text-slate-400">HUNTER:</span> <span id="hud-name" class="text-white font-bold"></span>
-        </div>
+        <div><span class="text-slate-400">HUNTER:</span> <span id="hud-name" class="text-white font-bold"></span></div>
         <div class="flex space-x-3">
           <div><span class="text-slate-400">LVL:</span> <span id="hud-level" class="text-cyan-400 font-bold"></span></div>
           <div><span class="text-slate-400">STREAK:</span> <span id="hud-streak" class="text-amber-400 font-bold"></span></div>
         </div>
       </div>
 
-      <!-- Quest Card -->
       <div class="bg-slate-900 rounded-lg p-5 system-border">
         <div class="flex justify-between items-center mb-2">
-          <span class="mono text-xs text-amber-400 tracking-wider font-bold">⚠️ QUEST GENERATED</span>
+          <span class="mono text-xs text-amber-400 font-bold">⚠️ ACTIVE INTERVENTION</span>
           <span id="quest-reward" class="mono text-xs bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800"></span>
         </div>
 
@@ -109,52 +98,58 @@
           <div>DIFFICULTY: <span id="quest-difficulty" class="text-slate-200"></span></div>
         </div>
 
-        <div class="bg-slate-950/80 rounded p-4 border border-slate-800 mb-4">
+        <div class="bg-slate-950 rounded p-4 border border-slate-800 mb-4">
           <div class="text-xs text-slate-400 mono mb-1">MANDATORY DIRECTIVE:</div>
           <p id="quest-desc" class="text-base text-slate-100 font-medium leading-relaxed"></p>
         </div>
 
-        <!-- Rationale Toggle -->
         <details class="text-xs text-slate-400 mb-4">
-          <summary class="cursor-pointer text-cyan-400 hover:text-cyan-300 mono underline mb-1">Why was this mission chosen for you?</summary>
+          <summary class="cursor-pointer text-cyan-400 mono underline mb-1">Why this intervention?</summary>
           <p id="quest-why" class="bg-slate-950 p-3 rounded mt-1 border border-slate-800 text-slate-300"></p>
         </details>
 
-        <div class="text-center py-2 text-xs mono text-cyan-400 system-glow">
-          [ LEAVE THIS SCREEN AND PERFORM THE TASK ]
+        <div class="bg-cyan-950/30 border border-cyan-800/40 p-3 rounded text-center mb-4">
+          <div class="text-xs mono text-cyan-300 mb-1">[ STANDBY MODE ]</div>
+          <p class="text-xs text-slate-400">Put this device down and complete the directive in the physical world.</p>
         </div>
 
-        <button id="btn-complete-prompt" class="w-full mt-2 bg-emerald-500 hover:bg-emerald-400 text-black font-black py-3 rounded transition-all tracking-wider text-base">
+        <button id="btn-complete-prompt" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-black py-3 rounded tracking-wider text-base mb-2">
           I HAVE RETURNED (REPORT COMPLETION)
         </button>
-      </div>
-    </div>
 
-    <!-- VIEW 3: REPORT REFLECTION MODAL -->
-    <div id="view-report" class="hidden bg-slate-900 rounded-lg p-5 system-border space-y-4">
-      <div class="mono text-xs text-emerald-400">// MISSION DEBRIEFING</div>
-      <h2 class="text-xl font-bold text-white">CONFIRM PHYSICAL ACTION</h2>
-      <p class="text-sm text-slate-300">AFK Engine trusts your integrity. Briefly report what you observed or completed outside:</p>
-
-      <textarea id="report-text" rows="3" required class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-sm text-slate-100 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Walked past the corner store for 20 minutes in the quiet evening."></textarea>
-
-      <div class="flex space-x-2">
-        <button id="btn-submit-report" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-2.5 rounded transition-all">
-          SUBMIT & COLLECT XP
+        <button id="btn-abandon-prompt" class="w-full bg-slate-950 hover:bg-red-950 border border-slate-800 hover:border-red-800 text-slate-400 hover:text-red-300 py-2 rounded text-xs mono transition-colors">
+          Abandon Directive
         </button>
       </div>
     </div>
 
-    <!-- VIEW 4: PROGRESSION & SUMMARY -->
+    <!-- VIEW 3: REPORT FORM -->
+    <div id="view-report" class="hidden bg-slate-900 rounded-lg p-5 system-border space-y-4">
+      <div class="mono text-xs text-emerald-400">// MISSION DEBRIEFING</div>
+      <h2 class="text-xl font-bold text-white">DEBRIEF REAL-WORLD ACTION</h2>
+      <p class="text-sm text-slate-300">Briefly log what you experienced or observed outside:</p>
+
+      <textarea id="report-text" rows="3" maxlength="300" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-sm text-slate-100 focus:border-cyan-400 focus:outline-none" placeholder="e.g. Put phone down and danced through 3 songs in full energy."></textarea>
+
+      <div class="flex space-x-2">
+        <button id="btn-cancel-report" class="w-1/3 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2.5 rounded font-bold text-xs mono">
+          BACK
+        </button>
+        <button id="btn-submit-report" class="w-2/3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-2.5 rounded text-sm">
+          CONFIRM & CLAIM XP
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 4: PROGRESSION HUD -->
     <div id="view-progress" class="hidden space-y-4">
       <div class="bg-slate-900 rounded-lg p-5 system-border text-center space-y-3">
-        <div class="mono text-xs text-cyan-400 system-glow">MISSION COMPLETE</div>
+        <div class="mono text-xs text-cyan-400 system-glow">DIRECTIVE COMPLETE</div>
         <h2 class="text-2xl font-black text-white">REWARD ALLOCATED</h2>
 
-        <!-- XP Bar -->
         <div class="space-y-1 text-left">
           <div class="flex justify-between text-xs mono text-slate-400">
-            <span>LEVEL PROGRESS</span>
+            <span>LEVEL PROGRESSION</span>
             <span id="prog-xp-text"></span>
           </div>
           <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800">
@@ -162,35 +157,51 @@
           </div>
         </div>
 
-        <!-- Identity Stat -->
         <div class="bg-slate-950 p-3 rounded border border-slate-800 text-left">
-          <div class="text-xs text-slate-400 mono">IDENTITY ALIGNMENT:</div>
+          <div class="text-xs text-slate-400 mono">REPORTED ASPIRATION ACTIONS:</div>
           <div class="text-sm font-bold text-slate-200 mt-1" id="prog-identity-text"></div>
         </div>
 
-        <!-- Tomorrow Hook -->
         <div class="bg-cyan-950/40 p-3 rounded border border-cyan-800/60 text-left">
           <div class="text-xs text-cyan-400 mono font-bold">NEXT PROTOCOL PREVIEW:</div>
           <p id="prog-teaser" class="text-sm text-slate-300 mt-1 italic"></p>
         </div>
 
         <button id="btn-next-mission" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded tracking-wider">
-          GENERATE NEXT INTERVENTION
+          REQUEST NEXT DIRECTIVE
         </button>
       </div>
     </div>
 
   </div>
 
-  <!-- Footer Controls -->
   <footer class="p-3 text-center text-slate-600 text-xs mono">
-    <button id="btn-reset" class="hover:text-red-400 underline transition-colors">Reset Profile</button>
+    <button id="btn-reset" class="hover:text-red-400 underline">Reset Hunter Data</button>
   </footer>
 
   <script>
+    let hunterId = localStorage.getItem('afk_hunter_id');
+    if (!hunterId) {
+      hunterId = 'HNT-' + Math.random().toString(36).substring(2, 9).toUpperCase();
+      localStorage.setItem('afk_hunter_id', hunterId);
+    }
+
     let state = null;
 
-    // View switcher helper
+    function getClientLocalDate() {
+      const now = new Date();
+      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    }
+
+    function showToast(message, isError = false) {
+      const t = document.getElementById('toast');
+      t.textContent = message;
+      t.className = isError 
+        ? 'mb-3 p-3 rounded text-xs mono text-center bg-red-950 text-red-300 border border-red-800 block' 
+        : 'mb-3 p-3 rounded text-xs mono text-center bg-cyan-950 text-cyan-300 border border-cyan-800 block';
+      setTimeout(() => t.classList.add('hidden'), 4500);
+    }
+
     function showView(viewId) {
       ['view-loading', 'view-onboarding', 'view-quest', 'view-report', 'view-progress'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
@@ -198,14 +209,42 @@
       document.getElementById(viewId).classList.remove('hidden');
     }
 
-    async function fetchState() {
-      showView('view-loading');
+    async function apiCall(endpoint, method = 'GET', body = null) {
       try {
-        const res = await fetch('/api/state');
-        state = await res.json();
-        render();
+        const opts = {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Hunter-Id': hunterId,
+            'X-Client-Date': getClientLocalDate()
+          }
+        };
+        if (body) opts.body = JSON.stringify(body);
+        const res = await fetch(endpoint, opts);
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({ error: 'Request rejected.' }));
+          throw new Error(err.error || 'Server error.');
+        }
+        return await res.json();
       } catch (err) {
-        alert('Failed to connect to backend.');
+        showToast(err.message, true);
+        return null;
+      }
+    }
+
+    async function loadState() {
+      showView('view-loading');
+      document.getElementById('loading-spinner').classList.remove('hidden');
+      document.getElementById('loading-status').textContent = 'SYNCHRONIZING WITH SYSTEM CORE...';
+      document.getElementById('btn-retry-conn').classList.add('hidden');
+
+      state = await apiCall('/api/state');
+      if (state) {
+        render();
+      } else {
+        document.getElementById('loading-spinner').classList.add('hidden');
+        document.getElementById('loading-status').textContent = 'CONNECTION FAILED: SERVER OFFLINE';
+        document.getElementById('btn-retry-conn').classList.remove('hidden');
       }
     }
 
@@ -216,12 +255,10 @@
       }
 
       if (state.currentMission && state.currentMission.status === 'ACTIVE') {
-        // Render HUD
         document.getElementById('hud-name').textContent = state.profile.name;
         document.getElementById('hud-level').textContent = state.progress.level;
         document.getElementById('hud-streak').textContent = `${state.progress.streakDays} DAYS`;
 
-        // Render Quest
         document.getElementById('quest-name').textContent = state.currentMission.name;
         document.getElementById('quest-reward').textContent = `+${state.currentMission.xpReward} XP`;
         document.getElementById('quest-duration').textContent = `${state.currentMission.durationMinutes} MIN`;
@@ -233,23 +270,26 @@
         return;
       }
 
-      // Show Progress / Next mission view
-      const xpPct = state.progress.currentLevelXp;
-      document.getElementById('prog-xp-text').textContent = `${xpPct} / 100 XP (LVL ${state.progress.level})`;
-      document.getElementById('prog-xp-bar').style.width = `${xpPct}%`;
+      const xp = state.progress.currentLevelXp;
+      document.getElementById('prog-xp-text').textContent = `${xp} / 100 XP (LVL ${state.progress.level})`;
+      document.getElementById('prog-xp-bar').style.width = `${xp}%`;
       document.getElementById('prog-identity-text').textContent = 
-        `You are ${state.progress.identityProgressPercent}% closer to embodying ${state.profile.desiredQuality}.`;
+        `${state.progress.aspirationActionsCompleted} reported actions completed toward ${state.profile.desiredQuality}.`;
       document.getElementById('prog-teaser').textContent = state.progress.tomorrowTeaser;
 
       showView('view-progress');
     }
 
-    // Onboarding Form Submit
+    document.getElementById('btn-retry-conn').addEventListener('click', loadState);
+
+    // Onboarding Submission
     document.getElementById('onboarding-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      showView('view-loading');
+      const btn = document.getElementById('btn-submit-onboard');
+      btn.disabled = true;
+      btn.textContent = 'GENERATING DIRECTIVE...';
 
-      const profile = {
+      const payload = {
         name: document.getElementById('name').value,
         admiredPerson: document.getElementById('admiredPerson').value,
         desiredQuality: document.getElementById('desiredQuality').value,
@@ -259,56 +299,68 @@
         availableTimeMinutes: parseInt(document.getElementById('timeMinutes').value)
       };
 
-      const res = await fetch('/api/profile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profile)
-      });
-      state = await res.json();
-      render();
+      const res = await apiCall('/api/profile', 'POST', payload);
+      btn.disabled = false;
+      btn.textContent = 'REGISTER & RECEIVE DIRECTIVE';
+      if (res) { state = res; render(); }
     });
 
-    // Complete button click
     document.getElementById('btn-complete-prompt').addEventListener('click', () => {
       showView('view-report');
     });
 
-    // Submit Report Click
+    document.getElementById('btn-cancel-report').addEventListener('click', () => {
+      showView('view-quest');
+    });
+
+    // Abandon Quest Handler
+    document.getElementById('btn-abandon-prompt').addEventListener('click', async () => {
+      if (confirm('Abandon this active directive? No XP will be awarded.')) {
+        const res = await apiCall('/api/mission/abandon', 'POST');
+        if (res) { state = res; render(); }
+      }
+    });
+
+    // Complete Report Submission
     document.getElementById('btn-submit-report').addEventListener('click', async () => {
-      const note = document.getElementById('report-text').value.trim();
-      if (!note) return alert('Please enter a brief note on what you did.');
+      const btn = document.getElementById('btn-submit-report');
+      btn.disabled = true;
 
-      showView('view-loading');
-      const res = await fetch('/api/mission/complete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ missionId: state.currentMission.id, userReport: note })
+      const reportNote = document.getElementById('report-text').value.trim();
+      const res = await apiCall('/api/mission/complete', 'POST', {
+        missionId: state.currentMission.id,
+        userReport: reportNote
       });
-      state = await res.json();
-      document.getElementById('report-text').value = '';
-      render();
-    });
 
-    // Next Mission Click
-    document.getElementById('btn-next-mission').addEventListener('click', async () => {
-      showView('view-loading');
-      const res = await fetch('/api/mission/next', { method: 'POST' });
-      state = await res.json();
-      render();
-    });
-
-    // Reset button
-    document.getElementById('btn-reset').addEventListener('click', async () => {
-      if (confirm('Reset all Hunter data?')) {
-        showView('view-loading');
-        const res = await fetch('/api/reset', { method: 'POST' });
-        state = await res.json();
+      btn.disabled = false;
+      if (res) {
+        state = res;
+        document.getElementById('report-text').value = '';
         render();
       }
     });
 
-    // Boot
-    fetchState();
+    // Next Mission Request
+    document.getElementById('btn-next-mission').addEventListener('click', async () => {
+      const btn = document.getElementById('btn-next-mission');
+      btn.disabled = true;
+      btn.textContent = 'COMMUNING WITH SYSTEM...';
+
+      const res = await apiCall('/api/mission/next', 'POST');
+      btn.disabled = false;
+      btn.textContent = 'REQUEST NEXT DIRECTIVE';
+      if (res) { state = res; render(); }
+    });
+
+    // Reset Data Handler
+    document.getElementById('btn-reset').addEventListener('click', async () => {
+      if (confirm('Reset your Hunter profile and progress?')) {
+        const res = await apiCall('/api/reset', 'POST');
+        if (res) { state = res; render(); }
+      }
+    });
+
+    loadState();
   </script>
 </body>
 </html>
