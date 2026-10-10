@@ -28,7 +28,7 @@ app.MapPost("/api/profile", async (UserProfile profile, DataStore store, AiServi
     state.Profile.IsInitialized = true;
 
     // Immediately generate the first mission via AI
-    var aiDto = await ai.GenerateMissionAsync(state.Profile, state.Progress);
+   var aiDto = await ai.GenerateMissionAsync(state.Profile, state.Progress, state.History);
     
     // Application enforces game rules (Architecture B)
     var difficulty = Math.Clamp(aiDto.Difficulty, 1, 5);
@@ -80,7 +80,7 @@ app.MapPost("/api/mission/next", async (DataStore store, AiService ai) =>
         return Results.BadRequest("Profile not initialized.");
     }
 
-    var aiDto = await ai.GenerateMissionAsync(state.Profile, state.Progress);
+    var aiDto = await ai.GenerateMissionAsync(state.Profile, state.Progress, state.History);
     var difficulty = Math.Clamp(aiDto.Difficulty, 1, 5);
 
     state.CurrentMission = new Mission
