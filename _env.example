@@ -1,0 +1,7 @@
+
+
+# Private Groq API key used by server-side code only.
+GROQ_API_KEY=your_groq_api_key_here
+
+# Model used for mission generation.
+GROQ_MODEL=openai/gpt-oss-20b
